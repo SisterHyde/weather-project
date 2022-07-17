@@ -10,6 +10,10 @@
   padding: 20px;
 }
 
+li {
+  text-transform: capitalize;
+}
+
 .weather-display {
   font-size: 60px;
 }
