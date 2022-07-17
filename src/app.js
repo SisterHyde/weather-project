@@ -28,7 +28,6 @@ function getDate() {
   updateTime.innerHTML = `${currentDay}, ${currentHour}:${getFullMinutes(
     currentMinutes
   )}`;
-  console.log(updateTime);
 }
 
 function getTemperature(response) {
@@ -37,7 +36,13 @@ function getTemperature(response) {
   cityElement.innerHTML = response.data.name;
 
   let tempElement = document.querySelector("#current-temp");
-  tempElement.innerHTML = Math.round(response.data.main.temp);
+  tempElement.innerHTML = `${Math.round(response.data.main.temp)} °F`;
+
+  let iconElement = document.querySelector("#weather-icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 
   let conditionElement = document.querySelector("#current-conditions");
   conditionElement.innerHTML = response.data.weather[0].description;
@@ -53,6 +58,6 @@ function getTemperature(response) {
 }
 
 let apiKey = "87b9e142701e346ddd9ec0db3824a563";
-let city = "New York";
+let city = "Fort Worth";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial`;
 axios.get(`${apiUrl}&appid=${apiKey}`).then(getTemperature);

@@ -1,3 +1,7 @@
+#celsius {
+  
+}
+
 #form-input {
   margin-right: 15px;
 }
@@ -10,8 +14,9 @@
   padding: 20px;
 }
 
-li {
-  text-transform: capitalize;
+.super-script {
+  font-size: 20px;
+  vertical-align: top;
 }
 
 .weather-display {
@@ -21,6 +26,7 @@ li {
 li {
   list-style: none;
   text-align: left;
+  text-transform: ;
 }
 
 ul {
