@@ -4,8 +4,8 @@ function getDate() {
   let currentHour = now.getHours();
   let currentMinutes = now.getMinutes();
 
-  //ADDING A ZERO IF MINUTES ARE UNDER 10
   function getFullMinutes() {
+    //ADDING A ZERO IF MINUTES ARE UNDER 10
     if (currentMinutes < 10) {
       return `0${currentMinutes}`;
     } else {
@@ -30,10 +30,10 @@ function getDate() {
   )}`;
 }
 
-function getTemperature(response) {
+function getCityData(response) {
   console.log(response.data);
   let cityElement = document.querySelector("#current-city");
-  cityElement.innerHTML = response.data.name;
+  cityElement.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
 
   let tempElement = document.querySelector("#current-temp");
   tempElement.innerHTML = `${Math.round(response.data.main.temp)} °F`;
@@ -57,7 +57,20 @@ function getTemperature(response) {
   getDate();
 }
 
-let apiKey = "87b9e142701e346ddd9ec0db3824a563";
-let city = "Fort Worth";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial`;
-axios.get(`${apiUrl}&appid=${apiKey}`).then(getTemperature);
+function searchCity(city) {
+  let apiKey = "87b9e142701e346ddd9ec0db3824a563";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial`;
+  axios.get(`${apiUrl}&appid=${apiKey}`).then(getCityData);
+}
+
+function searchInput(event) {
+  event.preventDefault();
+  let newCityElement = document.querySelector("#form-input");
+  searchCity(newCityElement.value);
+}
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", searchInput);
+
+//DEFAULT STARTING CITY - HOW CAN I CHANGE THIS TO AUTO-DETECT?
+searchCity("New York");

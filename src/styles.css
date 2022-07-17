@@ -1,5 +1,4 @@
 #celsius {
-  
 }
 
 #form-input {
@@ -26,7 +25,7 @@
 li {
   list-style: none;
   text-align: left;
-  text-transform: ;
+  text-transform: capitalize;
 }
 
 ul {
