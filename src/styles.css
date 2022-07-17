@@ -1,3 +1,25 @@
 #form-input {
   margin-right: 15px;
 }
+
+.container {
+  width: 900px;
+}
+
+.current-info {
+  padding: 20px;
+}
+
+.weather-display {
+  font-size: 60px;
+}
+
+li {
+  list-style: none;
+  text-align: left;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
