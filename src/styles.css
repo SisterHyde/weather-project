@@ -7,10 +7,16 @@
 
 .container {
   width: 900px;
+  margin-top: 30px;
+}
+
+.credits {
+  font-size: smaller;
+  padding: 10px;
 }
 
 .current-info {
-  padding: 20px;
+  padding: 40px;
 }
 
 .super-script {
