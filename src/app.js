@@ -1,3 +1,4 @@
+// GET CURRENT DATE AND TIME
 function getDate() {
   let now = new Date();
   let currentDay = now.getDay();
@@ -30,6 +31,7 @@ function getDate() {
   )}`;
 }
 
+// FETCH CITY DATA FROM API
 function getCityData(response) {
   console.log(response.data);
   let cityElement = document.querySelector("#current-city");
@@ -55,6 +57,8 @@ function getCityData(response) {
 
   let dateElement = document.querySelector("#current-date");
   getDate();
+
+  storeFahrenheit = response.data.main.temp;
 }
 
 function searchCity(city) {
@@ -69,8 +73,32 @@ function searchInput(event) {
   searchCity(newCityElement.value);
 }
 
+// SWITCHING BETWEEN CELSIUS AND FAHRENHEIT
+function switchToCelsius(event) {
+  let celsiusElement = document.querySelector("#current-temp");
+  let celsiusTemp = ((storeFahrenheit - 32) * 5) / 9;
+  celsiusElement.innerHTML = `${Math.round(celsiusTemp)} °C`;
+  celsiusLink.classList.remove("text-primary", "pointer");
+  fahrenheitLink.classList.add("text-primary", "pointer");
+}
+
+function switchToFahrenheit(event) {
+  let fahrenheitElement = document.querySelector("#current-temp");
+  fahrenheitElement.innerHTML = `${Math.round(storeFahrenheit)} °F`;
+  fahrenheitLink.classList.remove("text-primary", "pointer");
+  celsiusLink.classList.add("text-primary", "pointer");
+}
+
+// GLOBAL VARIABLE TO SUBMIT SEARCH INPUT INTO THE FORM
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", searchInput);
+
+// GLOBAL VARIABLES FOR SWITCHING FROM °F TO °C
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", switchToCelsius);
+
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", switchToFahrenheit);
 
 //DEFAULT STARTING CITY - HOW CAN I CHANGE THIS TO AUTO-DETECT?
 searchCity("New York");
