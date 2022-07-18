@@ -19,8 +19,9 @@
 }
 
 .credits {
-  font-size: smaller;
-  padding: 10px;
+  font-size: x-small;
+  padding: 0 10px;
+  text-align: center;
 }
 
 .current-info {
