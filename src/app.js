@@ -71,6 +71,7 @@ function searchInput(event) {
   event.preventDefault();
   let newCityElement = document.querySelector("#form-input");
   searchCity(newCityElement.value);
+  newCityElement.value = null;
 }
 
 // SWITCHING BETWEEN CELSIUS AND FAHRENHEIT
