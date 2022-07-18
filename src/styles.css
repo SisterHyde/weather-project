@@ -1,12 +1,20 @@
-#celsius {
+#current-wind-unit {
+  text-transform: lowercase;
 }
 
 #form-input {
   margin-right: 15px;
+  background-color: #f9f7fe;
+}
+
+.btn-primary {
+  width: 20%;
+  padding: 10px;
+  font-size: larger;
 }
 
 .container {
-  width: 900px;
+  width: 1000px;
   margin-top: 30px;
 }
 
@@ -16,7 +24,11 @@
 }
 
 .current-info {
-  padding: 40px;
+  padding: 40px 10px;
+}
+
+.strong {
+  font-weight: bold;
 }
 
 .super-script {
@@ -25,7 +37,7 @@
 }
 
 .weather-display {
-  font-size: 60px;
+  font-size: 80px;
 }
 
 li {

@@ -21,7 +21,7 @@
           <form id="search-form" class="form-inline">
             <input
               type="text"
-              class="flex-fill mr-sm-20 form-control"
+              class="flex-fill mr-sm-20 form-control-lg border border-light"
               id="form-input"
               placeholder="Enter a city..."
               autocomplete="off";
@@ -32,11 +32,11 @@
             <div class="col-6">
               <h1 id="current-city" class="text-primary"></h1>
               <ul>
-                <li id="current-date"></li>
+                <li id="current-date" class="text-primary strong"></li>
                 <li id="current-conditions"></li>
                 <li>
                   Humidity: <span id="current-humidity"></span>%, Wind:
-                  <span id="current-wind"></span>
+                  <span id="current-wind"></span><span id="current-wind-unit"> mph</span>
                 </li>
               </ul>
             </div>
