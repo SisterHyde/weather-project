@@ -1,3 +1,30 @@
+// POPULATING FORECAST ROW WITH DAYS
+function displayForecast() {
+  let forecastElement = document.querySelector("#weather-forecast");
+
+  let forecastHTML = `<div class="row">`;
+
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+  <div class="col-2">
+  <div class="strong">${day}</div>
+  <div>
+  <img class="forecast-icon" src="http://openweathermap.org/img/wn/02d@2x.png" alt="">
+  </div>
+  <div class="forecast-temps"> <span class="strong">90°</span>/75°</div>
+  </div>
+  
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
 // GET CURRENT DATE AND TIME
 function getDate() {
   let now = new Date();
@@ -59,6 +86,8 @@ function getCityData(response) {
   getDate();
 
   storeFahrenheit = response.data.main.temp;
+
+  displayForecast();
 }
 
 function searchCity(city) {
