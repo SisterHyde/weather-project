@@ -1,30 +1,3 @@
-// POPULATING FORECAST ROW WITH DAYS
-function displayForecast() {
-  let forecastElement = document.querySelector("#weather-forecast");
-
-  let forecastHTML = `<div class="row">`;
-
-  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-  <div class="col-2">
-  <div class="strong">${day}</div>
-  <div>
-  <img class="forecast-icon" src="http://openweathermap.org/img/wn/02d@2x.png" alt="">
-  </div>
-  <div class="forecast-temps"> <span class="strong">90°</span>/75°</div>
-  </div>
-  
-  `;
-  });
-
-  forecastHTML = forecastHTML + `</div>`;
-
-  forecastElement.innerHTML = forecastHTML;
-}
-
 // GET CURRENT DATE AND TIME
 function getDate() {
   let now = new Date();
@@ -58,9 +31,45 @@ function getDate() {
   )}`;
 }
 
+// POPULATING FORECAST ROW WITH SIX FUTURE DAYS
+function displayForecast(response) {
+  console.log(response.data.daily);
+  let forecastElement = document.querySelector("#weather-forecast");
+
+  let forecastHTML = `<div class="row">`;
+
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+  <div class="col-2">
+  <div class="strong">${day}</div>
+  <div>
+  <img class="forecast-icon" src="http://openweathermap.org/img/wn/02d@2x.png" alt="">
+  </div>
+  <div class="forecast-temps"> <span class="strong">90°</span>/75°</div>
+  </div>
+  
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
+// FETCH API DATA FOR 6 DAY FORECAST
+function getForecast(coordinates) {
+  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
+
+  axios.get(apiUrl).then(displayForecast);
+}
+
 // FETCH CITY DATA FROM API
 function getCityData(response) {
-  console.log(response.data);
+  // console.log(response.data);
   let cityElement = document.querySelector("#current-city");
   cityElement.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
 
@@ -85,13 +94,14 @@ function getCityData(response) {
   let dateElement = document.querySelector("#current-date");
   getDate();
 
-  storeFahrenheit = response.data.main.temp;
+  getForecast(response.data.coord);
 
-  displayForecast();
+  storeFahrenheit = response.data.main.temp;
 }
 
+// API CALL BASED ON FORM INPUT
 function searchCity(city) {
-  let apiKey = "87b9e142701e346ddd9ec0db3824a563";
+  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial`;
   axios.get(`${apiUrl}&appid=${apiKey}`).then(getCityData);
 }
