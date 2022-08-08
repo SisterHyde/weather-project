@@ -53,7 +53,6 @@ function displayForecast(response) {
         `
   <div class="col-2">
   <div class="strong forecast-date">${formatDay(forecastDay.dt)}</div>
-  ${index}
   <div>
   <img class="forecast-icon" src="http://openweathermap.org/img/wn/${
     forecastDay.weather[0].icon
@@ -64,8 +63,8 @@ function displayForecast(response) {
       forecastDay.temp.max
     )}°</span>
     /
-    </div>
     <span class="forecast-temp-min">${Math.round(forecastDay.temp.min)}°</span>
+    </div>
   </div>
   
   `;
@@ -81,7 +80,6 @@ function displayForecast(response) {
 let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
 function getForecast(coordinates) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
-
   axios.get(apiUrl).then(displayForecast);
 }
 
@@ -131,32 +129,31 @@ function searchInput(event) {
   newCityElement.value = null;
 }
 
-// SWITCHING BETWEEN CELSIUS AND FAHRENHEIT
-function switchToCelsius(event) {
-  let celsiusElement = document.querySelector("#current-temp");
-  let celsiusTemp = ((storeFahrenheit - 32) * 5) / 9;
-  celsiusElement.innerHTML = `${Math.round(celsiusTemp)} °C`;
-  celsiusLink.classList.remove("text-primary", "pointer");
-  fahrenheitLink.classList.add("text-primary", "pointer");
-}
-
-function switchToFahrenheit(event) {
-  let fahrenheitElement = document.querySelector("#current-temp");
-  fahrenheitElement.innerHTML = `${Math.round(storeFahrenheit)} °F`;
-  fahrenheitLink.classList.remove("text-primary", "pointer");
-  celsiusLink.classList.add("text-primary", "pointer");
-}
-
 // GLOBAL VARIABLE TO SUBMIT SEARCH INPUT INTO THE FORM
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", searchInput);
-
-// GLOBAL VARIABLES FOR SWITCHING FROM °F TO °C
-let celsiusLink = document.querySelector("#celsius");
-celsiusLink.addEventListener("click", switchToCelsius);
-
-let fahrenheitLink = document.querySelector("#fahrenheit");
-fahrenheitLink.addEventListener("click", switchToFahrenheit);
-
 //DEFAULT STARTING CITY - HOW CAN I CHANGE THIS TO AUTO-DETECT?
 searchCity("New York");
+
+// SWITCHING BETWEEN CELSIUS AND FAHRENHEIT - GOING TO WORK ON THIS LATER FOR FUN
+// function switchToCelsius(event) {
+//   let celsiusElement = document.querySelector("#current-temp");
+//   let celsiusTemp = ((storeFahrenheit - 32) * 5) / 9;
+//   celsiusElement.innerHTML = `${Math.round(celsiusTemp)} °C`;
+//   celsiusLink.classList.remove("text-primary", "pointer");
+//   fahrenheitLink.classList.add("text-primary", "pointer");
+// }
+
+// function switchToFahrenheit(event) {
+//   let fahrenheitElement = document.querySelector("#current-temp");
+//   fahrenheitElement.innerHTML = `${Math.round(storeFahrenheit)} °F`;
+//   fahrenheitLink.classList.remove("text-primary", "pointer");
+//   celsiusLink.classList.add("text-primary", "pointer");
+// }
+
+// // GLOBAL VARIABLES FOR SWITCHING FROM °F TO °C
+// let celsiusLink = document.querySelector("#celsius");
+// celsiusLink.addEventListener("click", switchToCelsius);
+
+// let fahrenheitLink = document.querySelector("#fahrenheit");
+// fahrenheitLink.addEventListener("click", switchToFahrenheit);

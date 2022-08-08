@@ -20,7 +20,7 @@
 
 .credits {
   font-size: x-small;
-  padding: 10px 0;
+  padding: 20px 0 0 0;
   text-align: center;
 }
 
@@ -32,8 +32,26 @@
   text-align: center;
   /* padding: 50px 0; */
 }
+
+.forecast-date {
+  color: #606470;
+}
+
 .forecast-icon {
   width: 45px;
+}
+
+.forecast-temp-max {
+  color: #606470;
+}
+
+.forecast-temp-min {
+  color: #606470;
+  opacity: 0.7;
+}
+
+.gray-background {
+  background: #f9f7fe;
 }
 
 .pointer:hover {
@@ -53,10 +71,18 @@
   font-size: 80px;
 }
 
+img {
+  filter: drop-shadow(5px 5px 5px gray);
+}
+
 li {
   list-style: none;
   text-align: left;
   text-transform: capitalize;
+}
+
+p {
+  margin: 0;
 }
 
 ul {
